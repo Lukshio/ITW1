@@ -13,10 +13,7 @@ body {
     padding: 0;
     min-width: 768px;
 }
-main{
-    container: main / 1200px;
-    margin: auto;
-}
+
 :root{
     --basic-gray: #363535; /*: základní šedá */
     --light-gray: #888888; /* světlejší šedá */
@@ -49,18 +46,31 @@ p {
     font-size: var(--p-text);
     color: var(--basic-gray);
 }
+section {
+    padding: 60px 0 80px 0;
+}
+/* heisenberg */
+#heisenberg{
+    display: none;
+}
+
 /*header */
 header{
+    height: 100vh;
+    min-height: 400px;
     background-image: url("../img/header.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    -webkit-box-shadow: inset 0px 90px 8px 0px rgba(255,255,255,1);
+    -moz-box-shadow: inset 0px 90px 8px 0px rgba(255,255,255,1);
+    box-shadow: inset 0px 90px 8px 0px rgba(255,255,255,1);
 }
 #header-menu{
     background-color: white;
-    width: 70%;
+    max-width: 1000px;
     margin: auto;
-    padding: 25px;
+    padding-top: 10px;
 }
 #header-menu {
     display: grid;
@@ -71,14 +81,20 @@ header{
     "logo links";
 }
 /* contacts */
-.contacts{
+header .contacts{
     grid-area: contacts;
+    padding: 10px;
+    display: flex;
 }
-.contacts i {
+header .contacts i {
     color: var(--red-decoration);
-    padding-right: 5px;
+    padding-right: 0.25rem;
 }
-.contacts a, .contacts span {
+header .contacts span:first-child{
+    order: 2;
+    margin-left: 10px;
+}
+header .contacts a, .contacts span {
     text-decoration: none;
     color: var(--basic-gray);
 }
@@ -93,13 +109,24 @@ header{
 }
 
 /* nav */
+nav{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    -webkit-box-shadow: 7px -7px 4px -7px rgba(204,54,54,1), 0px 7px 6px 4px rgba(255,255,255,1);;
+    -moz-box-shadow: 7px -7px 4px -7px rgba(204,54,54,1), 0px 7px 6px 4px rgba(255,255,255,1);;
+    box-shadow: 7px -7px 4px -7px rgba(204,54,54,1),  0px 7px 6px 4px rgba(255,255,255,1);
+}
 nav>ul {
     list-style: none;
     display: flex;
+    justify-content: end;
+    padding-right: 40px;
     text-decoration: none;
 }
 nav>ul li a{
-    padding: 25px 15px;
+    padding: 0 10px;
     text-decoration: none;
     color: var(--light-gray);
 }
@@ -110,23 +137,32 @@ nav li>ul{
 /* logo */
 .logo{
     grid-area: logo;
+    padding-left: 40px;
+    display: flex;
+    -webkit-box-shadow: -7px -7px 4px -7px rgba(156,156,156,1), 0px 7px 6px 4px rgba(255,255,255,1);;
+    -moz-box-shadow: -7px -7px 4px -7px rgba(156,156,156,1), 0px 7px 6px 4px rgba(255,255,255,1);;
+    box-shadow: -7px -7px 4px -7px rgba(156,156,156,1),  0px 7px 6px 4px rgba(255,255,255,1);
 }
 .logo a {
+    align-self: center;
     text-transform: uppercase;
     text-decoration: none;
     color: black;
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 32px;
     font-family: 'Bebas Neue', sans-serif;
 }
-.logo::first-letter{
+.logo a:first-letter{
     color: var(--red-decoration);
 }
 
 /* header title */
 #header-title{
-    padding-top: 20vh;
-    ing-bottom: 5vh;
+    height: calc(80vh - 90px);
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    padding: 0 50px 100px 0;
 }
 #header-title p{
     text-align: right;
@@ -134,7 +170,7 @@ nav li>ul{
 #header-title p span:first-child{
     text-shadow: white 1px 0 5px;
     color: white;
-    font-size: 3.5rem;
+    font-size: 52px;
 }
 #header-title p span:first-child:after{
     content: "\a";
@@ -143,7 +179,7 @@ nav li>ul{
 #header-title p span:last-child{
     text-shadow: var(--red-decoration) 1px 0 5px;
     color: var(--red-decoration);
-    font-size: 1.5rem;
+    font-size: 24px;
 }
 
 /* header form */
@@ -155,13 +191,13 @@ nav li>ul{
 }
 #header-form form{
     background-color: white;
-    padding: 20px;
-    margin-bottom: -50px;
+    padding: 15px;
 }
 #header-form input, #header-form select {
-    padding: 15px 25px;
+    padding: 10px;
+    font-size: 14px;
     text-align: left;
-    border-radius: 4px;
+    border-radius: 5px;
     border: 1px solid #b5b5b5;
 }
 #header-form [type=submit]{
@@ -189,7 +225,8 @@ nav li>ul{
 
     min-width: 768px;
     max-width: var(--container-width);
-    margin: 100px auto 100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 #about .heading{
     grid-area: heading;
@@ -223,7 +260,6 @@ nav li>ul{
 #services{
     text-align: center;
     text-transform: capitalize;
-    padding: 50px 0;
     background-color: var(--gray-touch);
 }
 #services p{
@@ -244,11 +280,6 @@ nav li>ul{
     max-width: calc(25% - 20px);
     overflow: hidden;
 }
-@media screen and (max-width: 1200px) {
-    #services .section-item{
-        max-width: calc(50% - 20px)
-    }
-}
 #services .section-item p{
     word-wrap: break-word;
 }
@@ -261,8 +292,9 @@ nav li>ul{
 
 /* tours */
 #tours{
-    max-width: 1200px;
-    margin: auto;
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
 }
 #tours .heading{
     text-align: center;
@@ -304,9 +336,11 @@ nav li>ul{
 }
 
 /* price */
-
+#price{
+    max-width: var(--container-width);
+    margin: auto;
+}
 #price .heading{
-    margin-top: 150px;
     text-align: center;
 }
 #price .section-content{
@@ -364,7 +398,7 @@ nav li>ul{
 
 /* clients */
 #clients{
-    max-width: 1200px;
+    max-width:var(--container-width);
     margin: auto;
     margin-top: 100px;
 }
@@ -373,7 +407,7 @@ nav li>ul{
 }
 #clients .section-item{
     overflow: auto;
-    max-width: calc(768px + (1200px - 768px)/2);
+    max-width: calc(768px + (var(--container-width) - 768px)/2);
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -420,6 +454,8 @@ footer{
 }
 footer>div {
     display: flex;
+    max-width:var(--container-width);
+    margin: auto;
 }
 footer #summary{
     max-width: 30%;

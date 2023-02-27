@@ -246,7 +246,7 @@ nav li>ul{
 }
 @media screen and (max-width: 1200px) {
     #services .section-item{
-        max-width: 50%;
+        max-width: calc(50% - 20px)
     }
 }
 #services .section-item p{

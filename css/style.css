@@ -12,6 +12,7 @@ body {
     margin: 0;
     padding: 0;
     min-width: 768px;
+    transition-duration: 500ms;
 }
 
 :root{
@@ -49,6 +50,30 @@ p {
 section {
     padding: 60px 0 80px 0;
 }
+
+i, li, a, .phone, .mail {
+    transition-duration: 500ms;
+}
+.phone:hover{
+    cursor: pointer;
+}
+i:hover, li:hover, a:hover, .phone:hover, .mail:hover{
+    color: var(--red-decoration) !important;
+}
+nav a {
+    font-weight: bold;
+}
+nav a:hover{
+    color: black !important;
+}
+nav a::after{
+    content: ' ';
+    width: 25px;
+    height: 1px;
+    background-color: #363535;
+}
+
+
 /* heisenberg */
 #heisenberg{
     display: none;
@@ -107,7 +132,9 @@ header .contacts a, .contacts span {
     color: var(--basic-gray);
     font-size: 25px;
 }
-
+.networks i:hover{
+    color: var(--red-decoration);
+}
 /* nav */
 nav{
     height: 80px;
@@ -192,6 +219,9 @@ nav li>ul{
 #header-form form{
     background-color: white;
     padding: 15px;
+    -webkit-box-shadow: 0 0 4px 0 var(--red-decoration);
+    -moz-box-shadow: 0 0 4px 0 var(--red-decoration);
+    box-shadow: 0px -7px 4px 1px rgb(250, 250, 250),  0px 0px 4px 0px var(--red-decoration);
 }
 #header-form input, #header-form select {
     padding: 10px;
@@ -199,12 +229,10 @@ nav li>ul{
     text-align: left;
     border-radius: 5px;
     border: 1px solid #b5b5b5;
+    width: 125px;
 }
-#header-form [type=submit]{
-    background-color: var(--red-decoration);
-    border: none;
-    color: white;
-    padding: 15px 75px;
+#header-form [type=date]{
+    min-width: 150px;
 }
 
 

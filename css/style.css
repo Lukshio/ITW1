@@ -50,6 +50,19 @@ p {
 section {
     padding: 60px 0 80px 0;
 }
+
+i, li, a, .phone, .mail {
+    transition-duration: 500ms;
+}
+.phone:hover{
+    cursor: pointer;
+}
+i:hover, li:hover, a:hover, .phone:hover, .mail:hover{
+    color: var(--red-decoration) !important;
+}
+
+
+
 /* heisenberg */
 #heisenberg{
     display: none;
@@ -129,20 +142,42 @@ nav>ul {
     text-decoration: none;
 }
 nav>ul li a{
-    padding: 0 10px;
+    padding: 0 10px 10px 10px;
     text-decoration: none;
     color: var(--light-gray);
 }
 nav li>ul{
     display: none;
 }
-
+nav a {
+    font-weight: bold;
+    position: relative;
+}
+nav a:hover{
+    color: black !important;
+}
+nav a:hover::after{
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: block;
+    height: 1px;
+    background-color: #363535;
+}
 nav .open ul{
     display: block;
     position: absolute;
-    padding: 0;
+    background-color: white;
+    padding: 8px;
+    -webkit-box-shadow:  0 0 4px 7px rgb(251, 251, 251);
+    -moz-box-shadow: 0 0 4px 7px rgb(248, 248, 248);
+    box-shadow: 0 0 4px 7px rgb(255, 255, 255);
 }
-
+nav .open li{
+    list-style: none;
+    padding: 5px 0;
+}
 nav .open li::before{
     color: var(--red-decoration);
     content: '>';
@@ -202,11 +237,16 @@ nav .open li::before{
     margin: auto;
     text-align: center;
     display: flex;
+    max-width: 1000px;
     justify-content: center;
 }
 #header-form form{
+    width: 100%;
     background-color: white;
     padding: 15px;
+    -webkit-box-shadow: 0px -4px 4px 2px rgb(250, 250, 250),  0px 0px 4px 0px var(--red-decoration);
+    -moz-box-shadow: 0px -4px 4px 2px rgb(250, 250, 250),  0px 0px 4px 0px var(--red-decoration);
+    box-shadow: 0px -4px 4px 2px rgb(250, 250, 250),  0px 0px 4px 0px var(--red-decoration);
 }
 #header-form input, #header-form select {
     padding: 10px;
@@ -214,6 +254,8 @@ nav .open li::before{
     text-align: left;
     border-radius: 5px;
     border: 1px solid #b5b5b5;
+    min-width: 125px;
+    width: max-content;
 }
 #header-form [type=submit]{
     background-color: var(--red-decoration);
@@ -221,6 +263,10 @@ nav .open li::before{
     color: white;
     padding: 15px 75px;
 }
+#header-form [type=date]{
+    min-width: 150px;
+}
+
 
 
 /* about section*/

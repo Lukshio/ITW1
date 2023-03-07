@@ -7,6 +7,9 @@
  * a pro netrivialni useky kodu.
  */
 /* GLOBALS */
+html{
+    scroll-behavior: smooth;
+}
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -50,14 +53,13 @@ p {
 section {
     padding: 60px 0 80px 0;
 }
-
-i, li, a, .phone, .mail {
+*{
     transition-duration: 500ms;
 }
-.phone:hover{
+.phone:hover, .address:hover{
     cursor: pointer;
 }
-i:hover, li:hover, a:hover, .phone:hover, .mail:hover{
+i:hover, li:hover, a:hover, .phone:hover, .mail:hover, .address:hover{
     color: var(--red-decoration) !important;
 }
 
@@ -86,7 +88,7 @@ i:hover, li:hover, a:hover, .phone:hover, .mail:hover{
 }
 #heisenberg.open{
     display: flex;
-    position: absolute;
+    position: fixed;
     background-color: var(--blue-decoration);
     padding: 10px;
     width: 300px;
@@ -110,6 +112,20 @@ i:hover, li:hover, a:hover, .phone:hover, .mail:hover{
 #heisenberg span{
     display: block;
     padding-left: 15px;
+}
+
+/* scroll to top button*/
+#jesse{
+    visibility: hidden;
+}
+.scrolled #jesse{
+    visibility: visible;
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+    padding: 15px 20px;
+    border: 1px solid var(--red-decoration);
+    color: var(--red-decoration);
 }
 
 /*header */
@@ -144,7 +160,7 @@ header .contacts{
     padding: 10px;
     display: flex;
 }
-header .contacts i {
+header .contacts i , footer .contacts i{
     color: var(--red-decoration);
     padding-right: 0.25rem;
 }
@@ -200,14 +216,9 @@ nav a {
 nav a:hover{
     color: black !important;
 }
-nav a:hover::after{
-    content: ' ';
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    display: block;
-    height: 1px;
-    background-color: #363535;
+nav a:hover{
+    text-decoration: underline #cc3636;
+    text-underline-offset: 8px;
 }
 nav .open ul{
     display: block;
@@ -359,12 +370,14 @@ input[name=persons]:valid + input[type=submit]{
     max-width: var(--container-width);
     margin-left: auto;
     margin-right: auto;
+    column-gap: 20px;
+    padding-left: 20px;
+    animation-duration: 500ms;
 }
 #about .heading{
     grid-area: heading;
     padding-top: 5%;
 }
-
 #about>p{
     grid-area: text;
     margin-top: 0;
@@ -379,14 +392,27 @@ input[name=persons]:valid + input[type=submit]{
     background-color: var(--gray-touch);
     margin-left: -70%;
     padding-left: 75%;
+    border: 2px solid var(--gray-touch)
 }
 #about img{
     grid-area: img;
     width: 100%;
     border-radius: 35px;
     filter: opacity(0.7);
-    padding: 20px;
+    padding: 15px;
 }
+#about:hover img{
+    transform: scale(1.04);
+    filter: opacity(1);
+}
+#about:hover .heading, #about:hover p{
+    border: 2px solid var(--red-decoration);
+    background-color: rgb(253, 196, 196);
+
+}
+#about .heading {border-bottom: none !important;}
+#about p{border-top: none !important;}
+
 
 /*services */
 #services{
@@ -409,14 +435,24 @@ input[name=persons]:valid + input[type=submit]{
 }
 #services .section-item img{
     width: 100%;
-}
-#services .section-item img{
-    width: 100%;
     height: 300px;
     object-fit: cover;
     filter: opacity(0.8);
 }
+#services .section-item h3, #tours .section-item h3{position: relative}
 
+/* same for tours and price*/
+#services .section-item:hover h3, #tours .section-item:hover h3, #price .section-item:hover h3{
+    text-decoration: underline #cc3636;
+    text-underline-offset: 8px;
+}
+#services .section-item:hover p, #tours .section-item:hover p, #price .section-item:hover li{
+    color: black !important;
+}
+#services .section-item:hover img, #tours .section-item:hover img{
+    transform: scale(1.04);
+    filter: opacity(1);
+}
 /* tours */
 #tours{
     background-image: url("../img/crystal-ship.svg");
@@ -436,6 +472,7 @@ input[name=persons]:valid + input[type=submit]{
 #tours .section-item{
     border-bottom: 1px dotted black;
     overflow: auto;
+    overflow-x: hidden;
     padding: 40px 0 20px 0;
 }
 #tours .tour-stars::before, #tours .tour-duration::before, #tours .tour-price::before{
@@ -468,7 +505,6 @@ input[name=persons]:valid + input[type=submit]{
     width: 40%;
     padding: 20px;
 }
-
 /* price */
 #price{
     max-width: var(--container-width);
@@ -480,16 +516,18 @@ input[name=persons]:valid + input[type=submit]{
 #price .section-content{
     padding: 50px 60px;
     height: 600px;
+    background-color: rgba(255, 255, 255, 0.59);
     background-image: url("../img/huel.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.6;
+    background-blend-mode: color;
     -webkit-box-shadow: inset 0px 0px 26px 32px rgba(255,255,255,1);
     -moz-box-shadow: inset 0px 0px 26px 32px rgba(255,255,255,1);
     box-shadow: inset 0px 0px 26px 32px rgba(255,255,255,1);
 }
 #price .section-item{
+    position: relative;
     padding: 10px;
     display: block;
     width: fit-content;
@@ -501,9 +539,7 @@ input[name=persons]:valid + input[type=submit]{
     border-radius: 25px;
 }
 #price .section-item span{
-    text-align: right;
-    width: 100%;
-    display: inline-block;
+    display: none;
 }
 #price .section-item h3{
     margin: 0;
@@ -517,6 +553,9 @@ input[name=persons]:valid + input[type=submit]{
 #price .section-item:nth-child(3){
     margin-left: 70%;
 }
+#price .section-item ul{
+    padding-left: 0;
+}
 #price li{
     list-style: none;
 }
@@ -529,6 +568,17 @@ input[name=persons]:valid + input[type=submit]{
     background-size: contain;
     background-repeat: no-repeat;
 }
+#price .section-item:hover li::before{
+    background-image: url("../img/crystal-blue.svg");
+}
+#price .section-item:hover span{
+    text-align: right;
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--blue-decoration);
+}
 
 /* clients */
 #clients{
@@ -538,6 +588,7 @@ input[name=persons]:valid + input[type=submit]{
 }
 #clients .heading{
     text-align: center;
+    margin-bottom: 100px;
 }
 #clients .section-item{
     overflow: auto;
@@ -550,9 +601,7 @@ input[name=persons]:valid + input[type=submit]{
     width: 200px;
     height: auto;
     margin: 25px;
-
     border-radius: 90px 50px;
-
     -webkit-box-shadow: 0px 0px 23px -2px rgba(0,0,0,1);
     -moz-box-shadow: 0px 0px 23px -2px rgba(0,0,0,1);
     box-shadow: 0px 0px 23px -2px rgba(0,0,0,1);
@@ -560,16 +609,17 @@ input[name=persons]:valid + input[type=submit]{
 #clients .section-item:nth-child(odd) img{
     order: 2;
 }
-/*#clients .section-item:nth-child(even) img{*/
-/*    float: left;*/
-/*}*/
+
 #clients blockquote{
     background-color: var(--gray-touch);
     display: inline-block;
-    padding: 25px 120px;
+    padding: 25px;
+    text-align: center;
+    width: calc(50%);
     height: min-content;
     border-radius: 95% 5% 95% 5% / 38% 38% 62% 62%;
     position: relative;
+    margin: 0 120px;
 }
 #clients blockquote::after {
     content: ' ';
@@ -590,7 +640,17 @@ input[name=persons]:valid + input[type=submit]{
     left: 0;
     margin-left: -110px;
 }
-
+#clients .section-item:hover blockquote::after{
+    background-color: #d76b6b;
+}
+#clients .section-item:hover blockquote{
+    background-color: var(--red-decoration);
+}
+#clients .section-item:hover img{
+    -webkit-box-shadow: 0px 0px 23px -2px var(--red-decoration);
+    -moz-box-shadow: 0px 0px 23px -2px var(--red-decoration);
+    box-shadow: 0px 0px 23px -2px var(--red-decoration);
+}
 /*footer */
 footer{
     margin-top: 150px;
@@ -622,9 +682,12 @@ footer .networks{
 footer .networks i{
     border: 1px solid var(--red-decoration);
     font-size: 16px;
-    color: white;
+    color: white !important;
     padding: 10px;
     margin-bottom: 10px;
+}
+footer .networks i:hover{
+    background-color: var(--red-decoration);
 }
 footer h2{
     font-family: 'Bebas Neue', sans-serif;
@@ -663,4 +726,21 @@ footer #license{
     color: white;
     border-top: 1px solid white;
     padding: 30px 0px;
+}
+footer form{
+    display: flex;
+}
+footer input{
+    padding: 10px;
+}
+footer input[type=submit]{
+    color: white;
+    border: none;
+}
+footer input[name=email]:valid + input[type=submit]{
+    text-align: center;
+    background-color: var(--blue-decoration);
+}
+footer #header-form [type=submit]:disabled{
+    background-color: var(--light-gray);
 }
